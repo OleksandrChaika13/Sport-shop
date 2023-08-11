@@ -1,0 +1,64 @@
+@startuml
+class app.goods.BlackCap {
++ float price()
++ String name()
+}
+class app.orders.OrderBuilder {
++ Order prepareOrderA()
++ Order prepareOrderB()
+}
+class app.goods.BlueShort {
++ float price()
++ String name()
+}
+class app.orders.BuilderPattern {
++ {static} void bPattern()
+}
+class app.Main {
++ {static} void main(String[])
+}
+class app.orders.Order {
+~ List<Item> items
++ void addItem(Item)
++ float getCost()
++ void showItems()
+}
+class app.goods.RedShort {
++ float price()
++ String name()
+}
+interface app.items.Item {
+~ String name()
+~ IProduction producer()
+~ float price()
+}
+class app.production.SmartCaps {
++ String pack()
+}
+abstract class app.items.Caps {
++ IProduction producer()
+}
+class app.goods.WhiteCap {
++ float price()
++ String name()
+}
+interface app.production.IProduction {
+~ String pack()
+}
+class app.production.ActiveSports {
++ String pack()
+}
+abstract class app.items.TShorts {
++ IProduction producer()
+}
+
+
+app.items.Caps <|-- app.goods.BlackCap
+app.items.TShorts <|-- app.goods.BlueShort
+app.items.TShorts <|-- app.goods.RedShort
+app.production.IProduction <|.. app.production.SmartCaps
+app.items.Item <|.. app.items.Caps
+app.items.Caps <|-- app.goods.WhiteCap
+app.production.IProduction <|.. app.production.ActiveSports
+app.items.Item <|.. app.items.TShorts
+@enduml
